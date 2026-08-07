@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Your Event — INNOVERSE 2026</title>
+  <meta name="description" content="Five questions across the real INNOVERSE 2026 events. Business or tech, build or strategize, pressure or preparation, solo or team, pitch or execute. Find which of the ten events is yours.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0B0B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='600' fill='%23C1121F' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body id="top" data-crumb="DISCOVER" data-crumbbox="INNOVERSE,DISCOVER">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="wordmark" href="index.html" aria-label="INNOVERSE 2026 — home">
+        INNOVERSE<span class="wordmark-year">2026</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="index.html#about">About</a>
+        <a href="esummit.html">E-Summit</a>
+        <a href="techfest.html">Techfest</a>
+        <a href="quiz.html" aria-current="true">Discover</a>
+        <a href="timeline.html">Timeline</a>
+        <a class="btn btn-primary" href="register.html">Register</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Contents">
+      <a href="index.html"><span class="m-num">00</span> Innoverse Home</a>
+      <a href="#quizIntro"><span class="m-num">01</span> The Quiz</a>
+      <a href="esummit.html"><span class="m-num">↗</span> E-Summit</a>
+      <a href="techfest.html"><span class="m-num">↗</span> Techfest</a>
+      <a href="register.html"><span class="m-num">→</span> Register</a>
+    </nav>
+  </header>
+
+  <main id="main" class="quiz">
+
+    <section class="quiz-head" id="quizIntro" aria-labelledby="quizTitle">
+      <p class="kicker">Which one is yours?</p>
+      <h1 class="h2" id="quizTitle">Find your event in five moves.</h1>
+      <p class="lede">Five sliders. No right answers. Each one places you between two real Innoverse ways of working — and the ten events score themselves the same way.</p>
+    </section>
+
+    <div class="quiz-shell" id="quizShell" aria-live="polite">
+
+      <section class="quiz-screen quiz-intro is-active" data-screen="intro" aria-labelledby="qIntroTitle">
+        <p class="q-count">5 questions · about 2 minutes</p>
+        <h2 class="h3" id="qIntroTitle">Answer as yourself.</h2>
+        <p>Move each slider toward the side that sounds more like you. When you finish, you'll get the event that sits closest to your answers — and the reasons why.</p>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="quizStart" type="button">Begin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="quiz-screen" data-screen="question" aria-labelledby="qText">
+        <div class="q-progress">
+          <span class="q-count-n" id="qIndex">01 / 05</span>
+          <span class="q-bar" aria-hidden="true"><i id="qBarFill"></i></span>
+        </div>
+        <p class="q-dimension" id="qDimension"></p>
+        <h2 class="q-text" id="qText"></h2>
+        <div class="slider-wrap">
+          <div class="range-row">
+            <input type="range" class="quiz-range" id="qSlider" min="-2" max="2" step="1" value="0" aria-label="Answer slider">
+          </div>
+          <div class="range-labels">
+            <span id="qMinLabel"></span>
+            <span class="rl-here" id="qMidLabel">Both equal</span>
+            <span id="qMaxLabel"></span>
+          </div>
+          <p class="range-active" id="qActiveLabel"></p>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn btn-ghost" id="quizBack" type="button" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+            Back
+          </button>
+          <button class="btn btn-primary" id="quizNext" type="button">Next
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="quiz-screen quiz-reveal" data-screen="reveal" aria-labelledby="rName">
+        <p class="r-eyebrow" id="rEyebrow">05 / 05 — You've made your choice.</p>
+        <h2 class="r-name" id="rName"></h2>
+        <p class="r-why" id="rWhy"></p>
+        <div class="r-meta" id="rMeta"></div>
+        <p class="r-desc" id="rDesc"></p>
+        <div class="r-actions">
+          <a class="btn btn-solid" id="rExplore" href="#">Explore event
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+          <a class="btn btn-primary" id="rRegister" href="register.html">Register for this event</a>
+          <button class="r-restart" id="quizRestart" type="button">Restart the quiz</button>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="footer-wordmark" href="index.html">INNOVERSE<span class="wordmark-year">2026</span></a>
+      <p class="footer-meta">28–30 September 2026<span>·</span>Choithram School, Manik Bagh, Indore</p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="index.html">Home</a>
+        <a href="esummit.html">E-Summit</a>
+        <a href="techfest.html">Techfest</a>
+        <a href="register.html">Register</a>
+        <a href="timeline.html">Timeline</a>
+        <a href="faq.html">FAQ's</a>
+      </nav>
+      <div class="footer-legal">
+        <span>Organized by One Choithram</span>
+        <span>Central India's Largest High School E-Summit &amp; Techfest</span>
+        <span>© 2026 Innoverse</span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="you-are-here" id="youAreHere" aria-label="You are here"></nav>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/quiz.js"></script>
+</body>
+</html>
