@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration — INNOVERSE 2026</title>
-  <meta name="description" content="Register for INNOVERSE 2026, 28–30 September 2026 at Choithram School, Manik Bagh, Indore. Five steps: teams, information, teams & events, review, complete. Free of cost.">
+  <meta name="description" content="Register for INNOVERSE 2026, 28–30 September 2026 at Choithram School, Manik Bagh, Indore. Five steps: events, information, teams, review, complete. Free of cost.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0B0B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='600' fill='%23C1121F' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/main.css">
@@ -48,15 +48,15 @@
     <section class="reg-head" aria-labelledby="regTitle">
       <p class="kicker">Registration · Innoverse 2026</p>
       <h1 class="h2" id="regTitle">Ready? Register.</h1>
-      <p class="lede">One event per participant. The form takes a few minutes — review everything before you submit. Participation is completely free of cost.</p>
+      <p class="lede">Pick the events your school will enter, then add a team for each one. The form takes a few minutes — review everything before you submit. Participation is completely free of cost.</p>
     </section>
 
     <div class="reg-shell" id="regShell">
 
       <ol class="reg-steps" id="regSteps" aria-label="Registration progress">
-        <li class="reg-step is-here"><span class="rs-num">1</span><span class="rs-label">Teams</span></li>
+        <li class="reg-step is-here"><span class="rs-num">1</span><span class="rs-label">Events</span></li>
         <li class="reg-step"><span class="rs-num">2</span><span class="rs-label">Information</span></li>
-        <li class="reg-step"><span class="rs-num">3</span><span class="rs-label">Teams &amp; Events</span></li>
+        <li class="reg-step"><span class="rs-num">3</span><span class="rs-label">Teams</span></li>
         <li class="reg-step"><span class="rs-num">4</span><span class="rs-label">Review</span></li>
         <li class="reg-step"><span class="rs-num">5</span><span class="rs-label">Complete</span></li>
       </ol>
@@ -64,12 +64,11 @@
       <form id="regForm" novalidate>
 
         <fieldset class="reg-screen is-active" data-step="1">
-          <h2 class="h3">How many teams?</h2>
-          <p class="rs-sub">You're registering on behalf of your school, so tell us how many teams you want to enter. Each team can take part in a different event — you'll choose an event for every team on the next steps.</p>
-          <div class="field team-count-field">
-            <label for="f-team-count">Number of teams <span class="req">*</span></label>
-            <input id="f-team-count" name="teamCount" type="number" min="1" max="10" step="1" value="1" required>
-          </div>
+          <h2 class="h3">Which events?</h2>
+          <p class="rs-sub">Tick every event your school will enter — each event you pick becomes one team, and a team can only take one event. Not sure what an event involves? Its details link opens in a new tab, so you can check it out without losing your place.</p>
+          <div id="eventPicker"></div>
+          <p class="ev-count" id="evCount" hidden></p>
+          <p class="field-error" id="evError" hidden>Choose at least one event to continue.</p>
           <div class="reg-nav">
             <button class="btn btn-solid" type="button" data-go="2">Continue to Information
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -80,6 +79,7 @@
         <fieldset class="reg-screen" data-step="2">
           <h2 class="h3">Information</h2>
           <p class="rs-sub">Details of your school and the mentor registering the teams. Required fields are marked with <span style="color:var(--accent);">*</span>.</p>
+          <p class="rs-sub rs-mention">You picked <b id="pickMention">1 event</b> — the next step has a form for each team.</p>
           <div class="field-grid">
             <div class="field">
               <label for="f-school">School name <span class="req">*</span></label>
@@ -108,15 +108,15 @@
           </div>
           <div class="reg-nav">
             <button class="btn btn-ghost" type="button" data-go="1">Back</button>
-            <button class="btn btn-solid" type="button" data-go="3">Continue to Teams &amp; Events
+            <button class="btn btn-solid" type="button" data-go="3">Continue to Teams
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
           </div>
         </fieldset>
 
         <fieldset class="reg-screen" data-step="3">
-          <h2 class="h3">Teams &amp; Events</h2>
-          <p class="rs-sub">Each team can enter a different event. Pick the event for every team, then fill in its details — a team's size must match its event's requirement.</p>
+          <h2 class="h3">Teams</h2>
+          <p class="rs-sub">One form per event you selected. Each team's event is locked in — fill in its details, and a team's size must match its event's requirement.</p>
 
           <div class="reg-team-blocks" id="teamsContainer"></div>
 
@@ -142,8 +142,7 @@
 
         <fieldset class="reg-screen" data-step="5">
           <h2 class="h3">Complete</h2>
-          <p class="rs-sub" id="completeSub">Confirm and submit your registration.</p>
-          <label class="reg-agree">
+          <p class="rs-sub" id="completeSub">Confirm and submit your registration.</p>          <label class="reg-agree">
             <input type="checkbox" id="f-agree">
             <span class="ra-text">I confirm the details above are accurate and agree to follow the <a href="guidelines.html">Innoverse 2026 General Guidelines</a> and code of conduct.</span>
           </label>

@@ -14,6 +14,25 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
+  <div class="portal" id="portal" aria-hidden="true">
+    <div class="portal-shapes">
+      <i class="ps" style="--tx:-46vw;--ty:-34vh;--r:8deg;--d:.05s"></i>
+      <i class="ps is-rect" style="--tx:40vw;--ty:-40vh;--r:-12deg;--d:.15s"></i>
+      <i class="ps is-circle" style="--tx:-34vw;--ty:38vh;--r:0deg;--d:.1s"></i>
+      <i class="ps is-tri" style="--tx:44vw;--ty:30vh;--r:180deg;--d:.2s"></i>
+      <i class="ps is-cross" style="--tx:-20vw;--ty:20vh;--r:45deg;--d:.25s"></i>
+      <i class="ps is-square" style="--tx:24vw;--ty:36vh;--r:18deg;--d:.35s"></i>
+      <i class="ps is-rect" style="--tx:-38vw;--ty:-12vh;--r:90deg;--d:.3s"></i>
+      <i class="ps is-circle" style="--tx:18vw;--ty:-32vh;--r:0deg;--d:.4s"></i>
+      <i class="ps is-tri" style="--tx:-26vw;--ty:-44vh;--r:0deg;--d:.45s"></i>
+      <i class="ps is-cross" style="--tx:36vw;--ty:8vh;--r:90deg;--d:.5s"></i>
+      <i class="ps is-square" style="--tx:-12vw;--ty:44vh;--r:12deg;--d:.55s"></i>
+      <i class="ps is-rect" style="--tx:30vw;--ty:-16vh;--r:-45deg;--d:.6s"></i>
+    </div>
+    <div class="portal-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="portal-title">INNOVERSE<span>2026</span></div>
+  </div>
+
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
       <a class="wordmark" href="index.html" aria-label="INNOVERSE 2026 — home">
@@ -36,18 +55,17 @@
     </div>
 
     <nav class="mobile-nav" id="mobileNav" aria-label="Contents">
-      <a href="index.html#invitation"><span class="m-num">01</span> Letter of Invitation</a>
-      <a href="index.html#about"><span class="m-num">02</span> About Innoverse</a>
-      <a href="index.html#worlds"><span class="m-num">03</span> Two Worlds</a>
-      <a href="index.html#map"><span class="m-num">04</span> Event Map</a>
-      <a href="esummit.html"><span class="m-num">05</span> E-Summit</a>
-      <a href="techfest.html"><span class="m-num">06</span> Techfest</a>
-      <a href="quiz.html"><span class="m-num">07</span> Discover Your Event</a>
-      <a href="register.html"><span class="m-num">08</span> Registration</a>
-      <a href="timeline.html"><span class="m-num">09</span> Timeline</a>
-      <a href="guidelines.html"><span class="m-num">10</span> Guidelines</a>
-      <a href="faq.html"><span class="m-num">11</span> FAQ's</a>
-      <a href="index.html#contact"><span class="m-num">12</span> Contact</a>
+      <a href="index.html#about"><span class="m-num">01</span> About Innoverse</a>
+      <a href="index.html#worlds"><span class="m-num">02</span> Two Worlds</a>
+      <a href="index.html#map"><span class="m-num">03</span> Event Map</a>
+      <a href="esummit.html"><span class="m-num">04</span> E-Summit</a>
+      <a href="techfest.html"><span class="m-num">05</span> Techfest</a>
+      <a href="quiz.html"><span class="m-num">06</span> Discover Your Event</a>
+      <a href="register.html"><span class="m-num">07</span> Registration</a>
+      <a href="timeline.html"><span class="m-num">08</span> Timeline</a>
+      <a href="guidelines.html"><span class="m-num">09</span> Guidelines</a>
+      <a href="faq.html"><span class="m-num">10</span> FAQ's</a>
+      <a href="index.html#contact"><span class="m-num">11</span> Contact</a>
     </nav>
   </header>
 
@@ -55,7 +73,7 @@
 
     <section class="hero" aria-labelledby="heroTitle">
       <div class="container">
-        <p class="hero-kicker"><span>Central India's Largest High School E-Summit &amp; Techfest</span></p>
+        <p class="hero-kicker" data-reveal><span>Central India's Largest High School E-Summit &amp; Techfest</span></p>
 
         <h1 class="hero-title" id="heroTitle">
           <span class="line" data-reveal>INNOVERSE</span>
@@ -64,7 +82,7 @@
 
         <p class="hero-claim" data-reveal>Innoverse is a student-led high-school Techfest and E-Summit where ideas take shape, technology drives innovation, challenges inspire solutions, and creativity transforms into impact.</p>
 
-        <div class="hero-facts">
+        <div class="hero-facts" data-reveal style="--rd:.15s">
           <div class="hero-fact">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
             <div>
@@ -88,76 +106,35 @@
           </div>
         </div>
 
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#invitation">Read the invitation
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-          </a>
+        <div class="hero-actions" data-reveal style="--rd:.22s">
           <a class="btn btn-solid" href="#worlds">Enter the two worlds</a>
         </div>
 
         <div class="contents" aria-label="Site contents">
           <div class="contents-head">
             <p class="kicker">Contents</p>
-            <p class="contents-count">Index — 11 sections</p>
+            <p class="contents-count">Index — 10 sections</p>
           </div>
           <ol class="contents-list">
-            <li><a href="#invitation"><span class="c-num">01</span><span class="c-title">Letter of Invitation</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="#about"><span class="c-num">02</span><span class="c-title">About Innoverse</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="#worlds"><span class="c-num">03</span><span class="c-title">Two Worlds</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="#map"><span class="c-num">04</span><span class="c-title">The Event Map</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="esummit.html"><span class="c-num">05</span><span class="c-title">E-Summit</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="techfest.html"><span class="c-num">06</span><span class="c-title">Techfest</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="quiz.html"><span class="c-num">07</span><span class="c-title">Discover Your Event</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="register.html"><span class="c-num">08</span><span class="c-title">Registration</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="timeline.html"><span class="c-num">09</span><span class="c-title">Timeline</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="guidelines.html"><span class="c-num">10</span><span class="c-title">Guidelines</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
-            <li><a href="faq.html"><span class="c-num">11</span><span class="c-title">FAQ's</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="#about"><span class="c-num">01</span><span class="c-title">About Innoverse</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="#worlds"><span class="c-num">02</span><span class="c-title">Two Worlds</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="#map"><span class="c-num">03</span><span class="c-title">The Event Map</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="esummit.html"><span class="c-num">04</span><span class="c-title">E-Summit</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="techfest.html"><span class="c-num">05</span><span class="c-title">Techfest</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="quiz.html"><span class="c-num">06</span><span class="c-title">Discover Your Event</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="register.html"><span class="c-num">07</span><span class="c-title">Registration</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="timeline.html"><span class="c-num">08</span><span class="c-title">Timeline</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="guidelines.html"><span class="c-num">09</span><span class="c-title">Guidelines</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
+            <li><a href="faq.html"><span class="c-num">10</span><span class="c-title">FAQ's</span><svg class="c-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></a></li>
           </ol>
         </div>
-      </div>
-    </section>
-
-    <section class="invitation section" id="invitation" aria-labelledby="invitationTitle">
-      <div class="container invitation-grid">
-        <div class="letter" data-reveal>
-          <p class="kicker">01 · Letter of Invitation</p>
-          <h2 class="letter-head" id="invitationTitle">Welcome to Innoverse 2026,</h2>
-          <div class="letter-body">
-            <p>Central India's Largest High School E-Summit &amp; Techfest. More than just an event, Innoverse is a platform where technology, creativity, and entrepreneurship come together to empower young innovators to create meaningful impact. Through a dynamic blend of competitions, expert interactions, and immersive experiences, students are encouraged to explore new ideas, solve real-world challenges, and create meaningful impact.</p>
-            <p>At Innoverse, every experience is designed to spark curiosity and transform imagination into action. From engaging with accomplished entrepreneurs, innovators, and industry leaders to participating in thoughtfully curated challenges, students will discover new perspectives in technology, leadership, sustainability and entrepreneurship while building the skills to thrive in an evolving world.</p>
-            <p>Join us as we celebrate bold ideas, breakthrough innovations, and the spirit of young minds shaping the future. We look forward to welcoming you to Innoverse 2026, organized by One Choithram, from 28–30 September 2026, at Choithram School, Manik Bagh, Indore.</p>
-          </div>
-          <p class="letter-sign">Warm Regards,<br>Team Innoverse<span class="sub">— Organizers, Innoverse 2026</span></p>
-        </div>
-
-        <aside class="fact-card" aria-label="Event facts at a glance">
-          <h3>At a glance</h3>
-          <ul>
-            <li>
-              <span class="f-label">When</span>
-              <span class="f-value">28–30 September 2026</span>
-            </li>
-            <li>
-              <span class="f-label">Where</span>
-              <span class="f-value">Choithram School, Manik Bagh, Indore</span>
-            </li>
-            <li>
-              <span class="f-label">Organized by</span>
-              <span class="f-value">One Choithram</span>
-            </li>
-            <li>
-              <span class="f-label">Format</span>
-              <span class="f-value">E-Summit &amp; Techfest — 10 events</span>
-            </li>
-          </ul>
-        </aside>
       </div>
     </section>
 
     <section class="section" id="about" aria-labelledby="aboutTitle">
       <div class="container about-grid">
         <div class="about-aside" data-reveal>
-          <p class="sec-index">02 · About Innoverse</p>
+          <p class="sec-index">01 · About Innoverse</p>
           <h2 class="h2" id="aboutTitle">A platform built for bold ideas.</h2>
         </div>
 
@@ -185,9 +162,9 @@
 
     <section class="worlds" id="worlds" aria-labelledby="worldsTitle">
       <div class="container">
-        <div class="w-num" aria-hidden="true">03</div>
-        <div class="worlds-head">
-          <p class="kicker">03 · Choose your world</p>
+        <div class="w-num" aria-hidden="true">02</div>
+        <div class="worlds-head" data-reveal>
+          <p class="kicker">02 · Choose your world</p>
           <h2 class="h2" id="worldsTitle">Two worlds. One Innoverse.</h2>
           <p class="lede">Every Innoverse event sits in one of two worlds. One is built around building ventures and persuasion. The other around building machines and code. Both run over the same three days at the same venue. You enter one.</p>
         </div>
@@ -232,10 +209,10 @@
       <div class="container">
         <div class="map-head">
           <div class="about-aside" data-reveal>
-            <p class="sec-index">04 · Choose your path</p>
+            <p class="sec-index">03 · Choose your path</p>
             <h2 class="h2" id="mapTitle">Every event is a point on a route.</h2>
           </div>
-          <p class="lede">Select an event to read where it sits. Every point belongs to one of the two worlds — follow the route to its event page.</p>
+          <p class="lede" data-reveal style="--rd:.1s">Select an event to read where it sits. Every point belongs to one of the two worlds — follow the route to its event page.</p>
         </div>
 
         <div class="map-filters" role="group" aria-label="Filter events by world">
@@ -284,10 +261,10 @@
       <div class="container">
         <div class="map-head">
           <div class="about-aside" data-reveal>
-            <p class="sec-index">05 · Explore the worlds</p>
+            <p class="sec-index">04 · Explore the worlds</p>
             <h2 class="h2" id="exploreTitle">Read the worlds in full.</h2>
           </div>
-          <p class="lede">Each world has its own page with every event explained in detail — format, teams, and what it takes to win.</p>
+          <p class="lede" data-reveal style="--rd:.1s">Each world has its own page with every event explained in detail — format, teams, and what it takes to win.</p>
         </div>
 
         <div class="explore-grid">
@@ -315,12 +292,12 @@
 
     <section class="dark section" id="discover" aria-labelledby="discoverTitle">
       <div class="container contact-grid">
-        <div>
-          <p class="kicker" style="margin-bottom:1.4rem;">06 · Discover</p>
+        <div data-reveal>
+          <p class="kicker" style="margin-bottom:1.4rem;">05 · Discover</p>
           <p class="conclusion-text">Not sure which event is yours? Five questions. One answer.</p>
           <p class="conclusion-see">Which one is yours?</p>
         </div>
-        <div class="contact-block" aria-label="Take the event recommender">
+        <div class="contact-block" aria-label="Take the event recommender" data-reveal style="--rd:.1s">
           <p class="kicker" id="discoverTitle">The event quiz</p>
           <p class="lede" style="margin-bottom:1rem;">Five sliders across the real Innoverse events — business or tech, build or strategize, pressure or preparation, solo or team, pitch or execute.</p>
           <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:0.9rem;">
@@ -334,12 +311,12 @@
 
     <section class="dark section" id="register-teaser" aria-labelledby="registerTeaserTitle" style="padding-top:0;">
       <div class="container contact-grid">
-        <div>
-          <p class="kicker" style="margin-bottom:1.4rem;">07 · Registration</p>
+        <div data-reveal>
+          <p class="kicker" style="margin-bottom:1.4rem;">06 · Registration</p>
           <p class="conclusion-text">Registration is straightforward and free. Five steps, one event, done.</p>
           <p class="conclusion-see">You're in.</p>
         </div>
-        <div class="contact-block" aria-label="Register for Innoverse">
+        <div class="contact-block" aria-label="Register for Innoverse" data-reveal style="--rd:.1s">
           <p class="kicker" id="registerTeaserTitle">Register</p>
           <p class="lede" style="margin-bottom:1rem;">One event per participant. Information, team, event, review, complete. Read the guidelines before you submit.</p>
           <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:0.9rem;">
@@ -352,13 +329,13 @@
 
     <section class="dark section" id="contact" aria-labelledby="contactTitle">
       <div class="container contact-grid">
-        <div>
-          <p class="kicker" style="margin-bottom:1.4rem;">08 · Contact</p>
+        <div data-reveal>
+          <p class="kicker" style="margin-bottom:1.4rem;">07 · Contact</p>
           <p class="conclusion-text">Every great innovation begins with one bold idea. Innoverse brings together the thinkers, creators and changemakers of tomorrow to transform ideas into real world solutions. The journey starts here!</p>
           <p class="conclusion-see">See you at Innoverse.</p>
         </div>
 
-        <div class="contact-block" aria-label="Contact Innoverse">
+        <div class="contact-block" aria-label="Contact Innoverse" data-reveal style="--rd:.1s">
           <p class="kicker" id="contactTitle">Contact</p>
           <p class="lede" style="margin-bottom:1rem;">For more queries, feel free to contact:</p>
           <ul class="contact-list">

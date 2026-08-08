@@ -56,19 +56,35 @@
     });
   }
 
-  var revealEls = document.querySelectorAll("[data-reveal]");
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          en.target.classList.add("is-in");
-          io.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(function (el) { io.observe(el); });
+  var portal = document.getElementById("portal");
+  if (portal && !reduce) {
+    document.body.classList.add("is-portal-lock");
+    window.setTimeout(function () {
+      document.body.classList.remove("is-portal-lock");
+    }, 2600);
+  }
+
+  function initReveal() {
+    var revealEls = document.querySelectorAll("[data-reveal]");
+    if ("IntersectionObserver" in window && !reduce) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            en.target.classList.add("is-in");
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add("is-in"); });
+    }
+  }
+
+  if (portal && !reduce) {
+    window.setTimeout(initReveal, 2000);
   } else {
-    revealEls.forEach(function (el) { el.classList.add("is-in"); });
+    initReveal();
   }
 
   var crumb = document.getElementById("youAreHere");

@@ -9,8 +9,12 @@
   var steps = document.querySelectorAll(".reg-step");
   var current = 1;
   var teams = [];
+  var selected = [];
 
-  var teamCount = document.getElementById("f-team-count");
+  var picker = document.getElementById("eventPicker");
+  var evCount = document.getElementById("evCount");
+  var evError = document.getElementById("evError");
+  var pickMention = document.getElementById("pickMention");
   var teamsContainer = document.getElementById("teamsContainer");
 
   var fields = {
@@ -33,13 +37,11 @@
       st.classList.toggle("is-here", num === n);
       st.classList.toggle("is-done", num < n);
     });
-    if (n === 3) {
-      syncTeamCount();
-    }
+    if (n === 2) updateMention();
+    if (n === 3) syncTeams();
     if (n === 4) buildReview();
     if (n === 5) {
-      document.getElementById("completeSub").textContent =
-        "Confirm your registration — " + teams.length + " team" + (teams.length === 1 ? "" : "s") + " across the event" + (teams.length === 1 ? "" : "s") + " you chose.";
+      document.getElementById("completeSub").textContent = completeLine();
     }
   }
 
@@ -129,13 +131,8 @@
     return isNaN(n) ? null : n;
   }
 
-  function teamEventSlug(t) {
-    return t.event ? t.event.value : "";
-  }
-
   function teamEventData(t) {
-    var slug = teamEventSlug(t);
-    return slug && EVENTS[slug] ? EVENTS[slug] : null;
+    return t.slug && EVENTS[t.slug] ? EVENTS[t.slug] : null;
   }
 
   function teamSizeRangeError(t) {
@@ -148,39 +145,75 @@
     return "";
   }
 
-  function teamCountNumber() {
-    var n = parseInt(teamCount.value, 10);
-    return isNaN(n) ? 1 : Math.max(1, Math.min(10, n));
+  function eventCard(slug) {
+    var ev = EVENTS[slug];
+    if (!ev) return "";
+    var id = "ev-" + slug;
+    return '<div class="ev-card" data-slug="' + slug + '">' +
+      '<input type="checkbox" class="ev-check" id="' + id + '" value="' + slug + '">' +
+      '<label class="ev-card-body" for="' + id + '">' +
+        '<span class="ev-tick" aria-hidden="true"></span>' +
+        '<span class="ev-main">' +
+          '<span class="ev-name">' + escapeHtml(ev.name) + '</span>' +
+          '<span class="ev-team">' + escapeHtml(ev.team) + '</span>' +
+        '</span>' +
+        '<span class="ev-blurb">' + escapeHtml(ev.blurb) + '</span>' +
+      '</label>' +
+      '<a class="ev-more" href="' + ev.page + '#' + slug + '" target="_blank" rel="noopener">Event details &#8599;</a>' +
+    '</div>';
   }
 
-  function eventRangeText(ev) {
-    if (ev.min == null || ev.max == null) return "";
-    return ev.min === ev.max ? ev.min + " members" : ev.min + "–" + ev.max + " members";
-  }
-
-  function eventOptions() {
-    var html = '<option value="">Select an event…</option>';
+  function renderPicker() {
+    var html = "";
     ["E-Summit", "Techfest"].forEach(function (p) {
       var slugs = Object.keys(EVENTS).filter(function (s) { return EVENTS[s].path === p; });
       if (!slugs.length) return;
-      html += '<optgroup label="' + p + '">';
-      slugs.forEach(function (s) {
-        var ev = EVENTS[s];
-        html += '<option value="' + s + '">' + ev.name + (eventRangeText(ev) ? " · " + eventRangeText(ev) : "") + "</option>";
-      });
-      html += "</optgroup>";
+      html += '<div class="ev-group">';
+      html += '<p class="ev-group-label">' + p + "</p>";
+      html += '<div class="ev-grid">';
+      slugs.forEach(function (s) { html += eventCard(s); });
+      html += "</div></div>";
     });
-    return html;
+    picker.innerHTML = html;
   }
 
-  function makeTeamBlock(i) {
+  function refreshSelected() {
+    selected = [];
+    var checks = picker.querySelectorAll(".ev-check:checked");
+    Array.prototype.forEach.call(checks, function (c) { selected.push(c.value); });
+    var cards = picker.querySelectorAll(".ev-card");
+    Array.prototype.forEach.call(cards, function (c) {
+      c.classList.toggle("is-on", c.querySelector(".ev-check").checked);
+    });
+    var n = selected.length;
+    if (evCount) {
+      if (n > 0) {
+        evCount.hidden = false;
+        evCount.textContent = n === 1
+          ? "1 event selected · that's 1 team"
+          : n + " events selected · that's " + n + " teams";
+      } else {
+        evCount.hidden = true;
+      }
+    }
+    if (evError) evError.hidden = true;
+    if (pickMention) updateMention();
+    if (current === 3) syncTeams();
+  }
+
+  function makeTeamBlock(i, slug) {
+    var ev = EVENTS[slug];
     var div = document.createElement("div");
     div.className = "reg-team-block";
     div.setAttribute("data-index", i);
+    div.setAttribute("data-event", slug);
     div.innerHTML =
       '<p class="rtb-num">Team ' + (i + 1) + '</p>' +
-      '<div class="field"><label for="t' + i + '-event">Event <span class="req">*</span></label>' +
-        '<select id="t' + i + '-event" class="team-event" required>' + eventOptions() + "</select></div>" +
+      '<div class="rtb-event">' +
+        '<span class="rtb-event-name">' + escapeHtml(ev ? ev.name : slug) + '</span>' +
+        '<span class="rtb-event-path">' + escapeHtml(ev ? ev.path : "") + '</span>' +
+        (ev ? '<a class="rtb-event-link" href="' + ev.page + '#' + slug + '" target="_blank" rel="noopener">Event details &#8599;</a>' : "") +
+      '</div>' +
       '<p class="rtb-event-hint" hidden></p>' +
       '<div class="field-grid">' +
         '<div class="field"><label for="t' + i + '-name">Team name</label>' +
@@ -194,29 +227,36 @@
         '<div class="field"><label for="t' + i + '-members">Member names</label>' +
           '<textarea id="t' + i + '-members" placeholder="One name per line." autocomplete="off"></textarea></div>' +
       '</div>';
-    var t = {
+    return {
       block: div,
-      event: div.querySelector('select[id="t' + i + '-event"]'),
-      hint: div.querySelector(".rtb-event-hint"),
+      slug: slug,
       name: div.querySelector('input[id="t' + i + '-name"]'),
       className: div.querySelector('input[id="t' + i + '-class"]'),
       size: div.querySelector('input[id="t' + i + '-size"]'),
-      members: div.querySelector('textarea[id="t' + i + '-members"]')
+      members: div.querySelector('textarea[id="t' + i + '-members"]'),
+      hint: div.querySelector(".rtb-event-hint")
     };
-    return t;
   }
 
-  function syncTeamCount() {
-    var target = teamCountNumber();
-    while (teams.length < target) {
-      var t = makeTeamBlock(teams.length);
+  function copyTeamValues(from, to) {
+    to.name.value = from.name.value;
+    to.className.value = from.className.value;
+    to.size.value = from.size.value;
+    to.members.value = from.members.value;
+  }
+
+  function syncTeams() {
+    var keep = {};
+    teams.forEach(function (t) { keep[t.slug] = t; });
+    teams = [];
+    teamsContainer.innerHTML = "";
+    selected.forEach(function (slug, i) {
+      var t = makeTeamBlock(i, slug);
+      if (keep[slug]) copyTeamValues(keep[slug], t);
       teams.push(t);
       teamsContainer.appendChild(t.block);
-    }
-    while (teams.length > target) {
-      var last = teams.pop();
-      last.block.parentNode.removeChild(last.block);
-    }
+      updateTeamHint(t);
+    });
   }
 
   function updateTeamHint(t) {
@@ -261,12 +301,11 @@
   function validate(n) {
     var ok = true;
     if (n === 1) {
-      var c = parseInt(teamCount.value, 10);
-      if (isNaN(c) || c < 1 || c > 10) {
+      if (!selected.length) {
         ok = false;
-        setFieldError(teamCount, "Enter a number between 1 and 10.");
-      } else {
-        setFieldError(teamCount, "");
+        if (evError) evError.hidden = false;
+      } else if (evError) {
+        evError.hidden = true;
       }
     }
     if (n === 2) {
@@ -278,14 +317,30 @@
       ok = checkPhone(fields.phone, false, "") && ok;
     }
     if (n === 3) {
-      syncTeamCount();
+      syncTeams();
       teams.forEach(function (t) {
-        ok = checkRequired(t.event, "Choose an event for this team.") && ok;
         ok = validateTeam(t) && ok;
         updateTeamHint(t);
       });
     }
     return ok;
+  }
+
+  function updateMention() {
+    if (!pickMention) return;
+    var n = selected.length;
+    pickMention.innerHTML = n === 1
+      ? "You picked <b>1 event</b> — the next step has a form for your team."
+      : "You picked <b>" + n + " events</b> — the next step has a form for each team.";
+  }
+
+  function completeLine() {
+    var n = teams.length;
+    if (n === 1) {
+      var ev = teams[0] ? teamEventData(teams[0]) : null;
+      return ev ? "Confirm your registration — 1 team for " + ev.name + "." : "Confirm your registration — 1 team.";
+    }
+    return "Confirm your registration — " + n + " teams across the " + n + " events you chose.";
   }
 
   document.querySelectorAll("[data-go]").forEach(function (b) {
@@ -304,24 +359,13 @@
     go(5);
   });
 
-  if (teamCount) {
-    teamCount.addEventListener("change", function () {
-      setFieldError(teamCount, "");
-      if (current === 3) {
-        syncTeamCount();
+  if (picker) {
+    picker.addEventListener("change", function (e) {
+      if (e.target && e.target.classList && e.target.classList.contains("ev-check")) {
+        refreshSelected();
       }
     });
   }
-
-  form.addEventListener("change", function (e) {
-    if (e.target && e.target.classList && e.target.classList.contains("team-event")) {
-      var block = e.target.closest ? e.target.closest(".reg-team-block") : null;
-      var t = block ? teams[+block.getAttribute("data-index")] : null;
-      if (!t) return;
-      setFieldError(t.event, "");
-      updateTeamHint(t);
-    }
-  });
 
   if (teamsContainer) {
     teamsContainer.addEventListener("input", function (e) {
@@ -333,12 +377,13 @@
     });
   }
 
+  renderPicker();
   var picked = new URLSearchParams(location.search).get("event");
-  syncTeamCount();
-  if (picked && EVENTS[picked] && teams[0] && teams[0].event) {
-    teams[0].event.value = picked;
-    updateTeamHint(teams[0]);
+  if (picked && EVENTS[picked]) {
+    var chk = picker.querySelector('.ev-check[value="' + picked + '"]');
+    if (chk) chk.checked = true;
   }
+  refreshSelected();
 
   function buildReview() {
     var list = document.getElementById("reviewList");
@@ -352,7 +397,7 @@
     html += row("Mentor phone", fields.phone.value.trim());
     html += "</ul>";
 
-    syncTeamCount();
+    syncTeams();
     teams.forEach(function (t, i) {
       var ev = teamEventData(t);
       html += '<div class="review-team">';
@@ -399,12 +444,11 @@
   }
 
   function buildPayloads() {
-    syncTeamCount();
+    syncTeams();
     return teams.map(function (t) {
-      var slug = teamEventSlug(t);
-      var ev = slug && EVENTS[slug] ? EVENTS[slug] : null;
+      var ev = teamEventData(t);
       return {
-        event: slug,
+        event: t.slug,
         eventName: ev ? ev.name : "",
         path: ev ? ev.path : "",
         school: fields.school.value.trim(),
