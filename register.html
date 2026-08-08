@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration — INNOVERSE 2026</title>
-  <meta name="description" content="Register for INNOVERSE 2026, 28–30 September 2026 at Choithram School, Manik Bagh, Indore. Five steps: information, team, event, review, complete. Free of cost.">
+  <meta name="description" content="Register for INNOVERSE 2026, 28–30 September 2026 at Choithram School, Manik Bagh, Indore. Five steps: teams, information, teams & events, review, complete. Free of cost.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0B0B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='600' fill='%23C1121F' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/main.css">
@@ -56,7 +56,7 @@
       <ol class="reg-steps" id="regSteps" aria-label="Registration progress">
         <li class="reg-step is-here"><span class="rs-num">1</span><span class="rs-label">Teams</span></li>
         <li class="reg-step"><span class="rs-num">2</span><span class="rs-label">Information</span></li>
-        <li class="reg-step"><span class="rs-num">3</span><span class="rs-label">Event</span></li>
+        <li class="reg-step"><span class="rs-num">3</span><span class="rs-label">Teams &amp; Events</span></li>
         <li class="reg-step"><span class="rs-num">4</span><span class="rs-label">Review</span></li>
         <li class="reg-step"><span class="rs-num">5</span><span class="rs-label">Complete</span></li>
       </ol>
@@ -65,7 +65,7 @@
 
         <fieldset class="reg-screen is-active" data-step="1">
           <h2 class="h3">How many teams?</h2>
-          <p class="rs-sub">You're registering on behalf of your school, so tell us how many teams you want to enter. All teams will be for the same event — you'll pick it on the next step.</p>
+          <p class="rs-sub">You're registering on behalf of your school, so tell us how many teams you want to enter. Each team can take part in a different event — you'll choose an event for every team on the next steps.</p>
           <div class="field team-count-field">
             <label for="f-team-count">Number of teams <span class="req">*</span></label>
             <input id="f-team-count" name="teamCount" type="number" min="1" max="10" step="1" value="1" required>
@@ -108,50 +108,17 @@
           </div>
           <div class="reg-nav">
             <button class="btn btn-ghost" type="button" data-go="1">Back</button>
-            <button class="btn btn-solid" type="button" data-go="3">Continue to Event
+            <button class="btn btn-solid" type="button" data-go="3">Continue to Teams &amp; Events
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
           </div>
         </fieldset>
 
         <fieldset class="reg-screen" data-step="3">
-          <h2 class="h3">Event</h2>
-          <p class="rs-sub">Choose the event you're entering, then fill in each team on the right. Every team's size must match the event's requirement.</p>
+          <h2 class="h3">Teams &amp; Events</h2>
+          <p class="rs-sub">Each team can enter a different event. Pick the event for every team, then fill in its details — a team's size must match its event's requirement.</p>
 
-          <div class="reg-event-layout">
-
-            <div class="reg-event-col">
-              <div class="event-picker-group">
-                <p class="epg-name">E-Summit</p>
-                <ul class="event-picker" data-picker="esummit">
-                  <li><input type="radio" name="event" id="ev-brand-reboot" value="brand-reboot"><label for="ev-brand-reboot"><span class="ep-num">ES·01</span><span class="ep-name">The Brand Reboot</span><span class="ep-path">3–5</span></label></li>
-                  <li><input type="radio" name="event" id="ev-pitch-arena" value="pitch-arena"><label for="ev-pitch-arena"><span class="ep-num">ES·02</span><span class="ep-name">Pitch Arena</span><span class="ep-path">up to 4</span></label></li>
-                  <li><input type="radio" name="event" id="ev-fort-knox" value="fort-knox-escape"><label for="ev-fort-knox"><span class="ep-num">ES·03</span><span class="ep-name">Fort Knox Escape</span><span class="ep-path">4</span></label></li>
-                  <li><input type="radio" name="event" id="ev-make-sell" value="make-and-sell"><label for="ev-make-sell"><span class="ep-num">ES·04</span><span class="ep-name">Make &amp; Sell</span><span class="ep-path">4–5</span></label></li>
-                  <li><input type="radio" name="event" id="ev-trade-tremors" value="trade-tremors"><label for="ev-trade-tremors"><span class="ep-num">ES·05</span><span class="ep-name">Trade Tremors</span><span class="ep-path">up to 5</span></label></li>
-                </ul>
-              </div>
-
-              <div class="event-picker-group">
-                <p class="epg-name">Techfest</p>
-                <ul class="event-picker" data-picker="techfest">
-                  <li><input type="radio" name="event" id="ev-code-decode" value="code-decode"><label for="ev-code-decode"><span class="ep-num">TF·01</span><span class="ep-name">Code Decode</span><span class="ep-path">3–5</span></label></li>
-                  <li><input type="radio" name="event" id="ev-frontier" value="frontier-1"><label for="ev-frontier"><span class="ep-num">TF·02</span><span class="ep-name">Frontier-1</span><span class="ep-path">3–4</span></label></li>
-                  <li><input type="radio" name="event" id="ev-crossfire" value="crossfire"><label for="ev-crossfire"><span class="ep-num">TF·03</span><span class="ep-name">The Crossfire</span><span class="ep-path">5–6</span></label></li>
-                  <li><input type="radio" name="event" id="ev-survivor" value="survivor"><label for="ev-survivor"><span class="ep-num">TF·04</span><span class="ep-name">Survivor</span><span class="ep-path">4</span></label></li>
-                  <li><input type="radio" name="event" id="ev-science-vault" value="science-vault"><label for="ev-science-vault"><span class="ep-num">TF·05</span><span class="ep-name">Science Vault</span><span class="ep-path">2–4</span></label></li>
-                </ul>
-              </div>
-
-              <p class="ep-status" id="epStatus" hidden></p>
-            </div>
-
-            <aside class="reg-team-col">
-              <p class="reg-team-hint" id="regTeamHint">Select an event first — the team details will appear here.</p>
-              <div class="reg-team-blocks" id="teamsContainer"></div>
-            </aside>
-
-          </div>
+          <div class="reg-team-blocks" id="teamsContainer"></div>
 
           <div class="reg-nav">
             <button class="btn btn-ghost" type="button" data-go="2">Back</button>

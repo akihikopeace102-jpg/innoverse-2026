@@ -8,7 +8,6 @@
   var screens = form.querySelectorAll(".reg-screen");
   var steps = document.querySelectorAll(".reg-step");
   var current = 1;
-  var eventSlug = null;
   var teams = [];
 
   var teamCount = document.getElementById("f-team-count");
@@ -36,13 +35,11 @@
     });
     if (n === 3) {
       syncTeamCount();
-      showTeamBlocks();
-      updateEventStatus();
     }
     if (n === 4) buildReview();
-    if (n === 5 && eventSlug && EVENTS[eventSlug]) {
+    if (n === 5) {
       document.getElementById("completeSub").textContent =
-        "Confirm your registration for " + EVENTS[eventSlug].name + " — " + teams.length + " team" + (teams.length === 1 ? "" : "s") + ".";
+        "Confirm your registration — " + teams.length + " team" + (teams.length === 1 ? "" : "s") + " across the event" + (teams.length === 1 ? "" : "s") + " you chose.";
     }
   }
 
@@ -132,9 +129,17 @@
     return isNaN(n) ? null : n;
   }
 
+  function teamEventSlug(t) {
+    return t.event ? t.event.value : "";
+  }
+
+  function teamEventData(t) {
+    var slug = teamEventSlug(t);
+    return slug && EVENTS[slug] ? EVENTS[slug] : null;
+  }
+
   function teamSizeRangeError(t) {
-    if (!eventSlug) return "";
-    var ev = EVENTS[eventSlug];
+    var ev = teamEventData(t);
     if (!ev || ev.min == null || ev.max == null) return "";
     var n = teamSizeNumber(t);
     if (n === null) return "Enter the number of members.";
@@ -148,12 +153,35 @@
     return isNaN(n) ? 1 : Math.max(1, Math.min(10, n));
   }
 
+  function eventRangeText(ev) {
+    if (ev.min == null || ev.max == null) return "";
+    return ev.min === ev.max ? ev.min + " members" : ev.min + "–" + ev.max + " members";
+  }
+
+  function eventOptions() {
+    var html = '<option value="">Select an event…</option>';
+    ["E-Summit", "Techfest"].forEach(function (p) {
+      var slugs = Object.keys(EVENTS).filter(function (s) { return EVENTS[s].path === p; });
+      if (!slugs.length) return;
+      html += '<optgroup label="' + p + '">';
+      slugs.forEach(function (s) {
+        var ev = EVENTS[s];
+        html += '<option value="' + s + '">' + ev.name + (eventRangeText(ev) ? " · " + eventRangeText(ev) : "") + "</option>";
+      });
+      html += "</optgroup>";
+    });
+    return html;
+  }
+
   function makeTeamBlock(i) {
     var div = document.createElement("div");
     div.className = "reg-team-block";
     div.setAttribute("data-index", i);
     div.innerHTML =
       '<p class="rtb-num">Team ' + (i + 1) + '</p>' +
+      '<div class="field"><label for="t' + i + '-event">Event <span class="req">*</span></label>' +
+        '<select id="t' + i + '-event" class="team-event" required>' + eventOptions() + "</select></div>" +
+      '<p class="rtb-event-hint" hidden></p>' +
       '<div class="field-grid">' +
         '<div class="field"><label for="t' + i + '-name">Team name</label>' +
           '<input id="t' + i + '-name" type="text" autocomplete="off"></div>' +
@@ -168,6 +196,8 @@
       '</div>';
     var t = {
       block: div,
+      event: div.querySelector('select[id="t' + i + '-event"]'),
+      hint: div.querySelector(".rtb-event-hint"),
       name: div.querySelector('input[id="t' + i + '-name"]'),
       className: div.querySelector('input[id="t' + i + '-class"]'),
       size: div.querySelector('input[id="t' + i + '-size"]'),
@@ -189,40 +219,25 @@
     }
   }
 
-  function showTeamBlocks() {
-    var hint = document.getElementById("regTeamHint");
-    if (!hint) return;
-    hint.hidden = !!eventSlug;
-    if (teamsContainer) teamsContainer.hidden = !eventSlug;
-  }
-
-  function updateEventStatus() {
-    var el = document.getElementById("epStatus");
+  function updateTeamHint(t) {
+    var el = t.hint;
     if (!el) return;
-    var ev = eventSlug ? EVENTS[eventSlug] : null;
+    var ev = teamEventData(t);
     if (!ev) {
       el.hidden = true;
       return;
     }
     var rangeTxt = (ev.min === ev.max) ? "a team of " + ev.min
                   : "a team of " + ev.min + "–" + ev.max;
-    var base = ev.name + " · " + rangeTxt + ".";
-    var bad = null;
-    teams.forEach(function (t) {
-      var n = teamSizeNumber(t);
-      if (n === null) return;
-      if (n < ev.min || n > ev.max) bad = bad || { n: n, num: teams.indexOf(t) + 1 };
-    });
-    if (bad) {
-      el.textContent = base + " Team " + bad.num + " has " + bad.n + " members — outside the allowed range. Fix it below.";
+    var msg = ev.name + " · " + ev.team + ".";
+    var n = teamSizeNumber(t);
+    if (n !== null && (n < ev.min || n > ev.max)) {
+      msg += " Your team has " + n + " — this event needs " + rangeTxt + ".";
       el.classList.add("is-warn");
-    } else if (teams.length && teams.every(function (t) { return teamSizeNumber(t) !== null; })) {
-      el.textContent = base + " All " + teams.length + " team" + (teams.length === 1 ? "" : "s") + " fit.";
-      el.classList.remove("is-warn");
     } else {
-      el.textContent = base + " Enter each team's size below.";
       el.classList.remove("is-warn");
     }
+    el.textContent = msg;
     el.hidden = false;
   }
 
@@ -263,25 +278,11 @@
       ok = checkPhone(fields.phone, false, "") && ok;
     }
     if (n === 3) {
-      var sel = form.querySelector('input[name="event"]:checked');
-      if (!sel) {
-        ok = false;
-        var groups = document.querySelectorAll(".event-picker-group");
-        groups.forEach(function (g) {
-          var err = g.querySelector(".field-error");
-          if (!err) {
-            var e = document.createElement("p");
-            e.className = "field-error";
-            e.textContent = "Choose the event you're registering for.";
-            g.appendChild(e);
-          }
-        });
-      } else {
-        document.querySelectorAll(".event-picker-group .field-error").forEach(function (e) { e.remove(); });
-      }
       syncTeamCount();
       teams.forEach(function (t) {
+        ok = checkRequired(t.event, "Choose an event for this team.") && ok;
         ok = validateTeam(t) && ok;
+        updateTeamHint(t);
       });
     }
     return ok;
@@ -308,42 +309,39 @@
       setFieldError(teamCount, "");
       if (current === 3) {
         syncTeamCount();
-        updateEventStatus();
       }
     });
   }
 
   form.addEventListener("change", function (e) {
-    if (e.target && e.target.name === "event" && e.target.checked) {
-      eventSlug = e.target.value;
-      document.querySelectorAll(".event-picker-group .field-error").forEach(function (x) { x.remove(); });
-      showTeamBlocks();
-      updateEventStatus();
+    if (e.target && e.target.classList && e.target.classList.contains("team-event")) {
+      var block = e.target.closest ? e.target.closest(".reg-team-block") : null;
+      var t = block ? teams[+block.getAttribute("data-index")] : null;
+      if (!t) return;
+      setFieldError(t.event, "");
+      updateTeamHint(t);
     }
   });
 
   if (teamsContainer) {
     teamsContainer.addEventListener("input", function (e) {
-      var t = e.target.closest ? e.target.closest(".reg-team-block") : null;
+      var block = e.target.closest ? e.target.closest(".reg-team-block") : null;
+      if (!block) return;
+      var t = teams[+block.getAttribute("data-index")];
       if (!t) return;
-      if (e.target.name && e.target.name !== "teamSize") return;
-      if (eventSlug) updateEventStatus();
+      if (e.target === t.size) updateTeamHint(t);
     });
   }
 
   var picked = new URLSearchParams(location.search).get("event");
-  if (picked && EVENTS[picked]) {
-    eventSlug = picked;
-    var input = form.querySelector('input[name="event"][value="' + picked + '"]');
-    if (input) input.checked = true;
-  }
-
   syncTeamCount();
-  showTeamBlocks();
+  if (picked && EVENTS[picked] && teams[0] && teams[0].event) {
+    teams[0].event.value = picked;
+    updateTeamHint(teams[0]);
+  }
 
   function buildReview() {
     var list = document.getElementById("reviewList");
-    var ev = eventSlug ? EVENTS[eventSlug] : null;
     var html = "";
 
     html += '<ul class="reg-review">';
@@ -352,14 +350,15 @@
     html += row("Escort teacher", fields.escort.value.trim());
     html += row("Mentor email", fields.email.value.trim());
     html += row("Mentor phone", fields.phone.value.trim());
-    html += row("Event", ev ? escapeHtml(ev.name) + " · " + ev.path : "Not selected");
     html += "</ul>";
 
     syncTeamCount();
     teams.forEach(function (t, i) {
+      var ev = teamEventData(t);
       html += '<div class="review-team">';
       html += '<p class="rtb-num">Team ' + (i + 1) + "</p>";
       html += "<ul class=\"reg-review\">";
+      html += row("Event", ev ? escapeHtml(ev.name) + " · " + ev.path : "");
       html += row("Team name", t.name.value.trim());
       html += row("Class / Grade", t.className.value.trim());
       html += row("Team size", t.size.value.trim() || "—");
@@ -400,11 +399,12 @@
   }
 
   function buildPayloads() {
-    var ev = eventSlug ? EVENTS[eventSlug] : null;
     syncTeamCount();
     return teams.map(function (t) {
+      var slug = teamEventSlug(t);
+      var ev = slug && EVENTS[slug] ? EVENTS[slug] : null;
       return {
-        event: eventSlug,
+        event: slug,
         eventName: ev ? ev.name : "",
         path: ev ? ev.path : "",
         school: fields.school.value.trim(),
@@ -445,17 +445,17 @@
       .then(function () {
         form.hidden = true;
         var su = document.getElementById("regSuccess");
-        var ev = EVENTS[eventSlug];
         var n = teams.length;
         document.getElementById("suSub").textContent =
-          "Your registration for " + ev.name + " is recorded — " + n + " team" + (n === 1 ? "" : "s") + " submitted. Here is what you sent.";
+          "Your registration is recorded — " + n + " team" + (n === 1 ? "" : "s") + " submitted. Here is what you sent.";
         var list = document.getElementById("suList");
         var html = "";
         teams.forEach(function (t, i) {
+          var ev = teamEventData(t);
           html += '<div class="su-team">';
           html += "<p>" + escapeHtml(t.name.value.trim() || "Team " + (i + 1)) + "</p>";
           html += "<ul>";
-          html += "<li><span>Event</span><span>" + escapeHtml(ev.name) + " · " + ev.path + "</span></li>";
+          html += "<li><span>Event</span><span>" + escapeHtml(ev ? ev.name + " · " + ev.path : "—") + "</span></li>";
           html += "<li><span>Class / Grade</span><span>" + escapeHtml(t.className.value.trim() || "—") + "</span></li>";
           html += "<li><span>Team size</span><span>" + escapeHtml(t.size.value.trim()) + "</span></li>";
           html += "</ul></div>";
