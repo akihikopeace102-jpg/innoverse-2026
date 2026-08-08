@@ -1,12 +1,13 @@
 /**
  * INNOVERSE 2026 — Registration backend
  *
- * The site now sends ONE batched POST per registration with every team:
+ * The site sends ONE batched POST per registration with every team:
  *   { "teams": [ {event, eventName, path, school, ...}, ... ] }
  *
- * All teams are written in a single setValues() call — one batch append
- * instead of one appendRow per team. This is what stops teams from being
- * dropped when a school registers many teams at once.
+ * Every team is written:
+ *   1. Into the main "Registrations" sheet (one batch setValues call), and
+ *   2. Into a per-event sheet (named after the event, e.g. "The Brand Reboot")
+ *      which is created on first use and auto-fills from the same data.
  *
  * Deploy: Deploy > Manage deployments > (your Web App) > Edit > Version: New
  * The /exec URL stays the same.
@@ -30,45 +31,73 @@ function doPost(e) {
     }
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = ss.getSheetByName(SHEET_NAME);
-    if (!sheet) {
-      sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow(HEADERS);
-      sheet.setFrozenRows(1);
-    } else if (sheet.getLastRow() === 0) {
-      sheet.appendRow(HEADERS);
-      sheet.setFrozenRows(1);
-    }
+    var rows = teams.map(buildRow);
 
-    var rows = teams.map(function (t) {
-      return [
-        new Date(),
-        t.event || "",
-        t.eventName || "",
-        t.path || "",
-        t.school || "",
-        t.city || "",
-        t.escort || "",
-        t.escortPhone || "",
-        t.participant || "",
-        t.className || "",
-        t.email || "",
-        t.phone || "",
-        t.teamName || "",
-        t.teamSize || "",
-        t.members || ""
-      ];
+    var main = getSheet_(ss, SHEET_NAME, HEADERS);
+    appendRows_(main, rows);
+
+    var byEvent = {};
+    teams.forEach(function (t, i) {
+      var key = eventSheetName(t);
+      (byEvent[key] = byEvent[key] || []).push(rows[i]);
+    });
+    Object.keys(byEvent).forEach(function (key) {
+      var sheet = getSheet_(ss, key, HEADERS);
+      appendRows_(sheet, byEvent[key]);
     });
 
-    var first = sheet.getLastRow() + 1;
-    sheet.getRange(first, 1, rows.length, HEADERS.length).setValues(rows);
-
-    return respond({ ok: true, count: rows.length });
+    return respond({ ok: true, count: rows.length, events: Object.keys(byEvent).length });
   } catch (err) {
     return respond({ ok: false, error: String(err) }, 500);
   } finally {
     lock.releaseLock();
   }
+}
+
+/** Builds one row aligned to HEADERS. */
+function buildRow(t) {
+  return [
+    new Date(),
+    t.event || "",
+    t.eventName || "",
+    t.path || "",
+    t.school || "",
+    t.city || "",
+    t.escort || "",
+    t.escortPhone || "",
+    t.participant || "",
+    t.className || "",
+    t.email || "",
+    t.phone || "",
+    t.teamName || "",
+    t.teamSize || "",
+    t.members || ""
+  ];
+}
+
+/** Sheet name for an event, with characters illegal in sheet names stripped. */
+function eventSheetName(t) {
+  var name = String(t.eventName || t.event || "Other").trim();
+  name = name.replace(/[\\\/\?\*\[\]:]/g, "");
+  name = name.replace(/\s+/g, " ").trim();
+  return name || "Other";
+}
+
+/** Returns the sheet, creating it with a frozen header row if it doesn't exist. */
+function getSheet_(ss, name, headers) {
+  var sheet = ss.getSheetByName(name);
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
+    sheet.appendRow(headers);
+    sheet.setFrozenRows(1);
+  }
+  return sheet;
+}
+
+/** Appends rows in a single batch call. */
+function appendRows_(sheet, rows) {
+  var first = sheet.getLastRow() + 1;
+  sheet.getRange(first, 1, rows.length, HEADERS.length).setValues(rows);
 }
 
 /**
