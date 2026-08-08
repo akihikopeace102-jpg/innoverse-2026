@@ -427,14 +427,12 @@
 
   function submitRegistration(payloads) {
     if (SUBMIT_ENDPOINT) {
-      return Promise.all(payloads.map(function (p) {
-        return fetch(SUBMIT_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(p)
-        });
-      })).then(function () {
+      return fetch(SUBMIT_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ teams: payloads })
+      }).then(function () {
         return { ok: true };
       });
     }
