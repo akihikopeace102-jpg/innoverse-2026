@@ -26,10 +26,15 @@
   --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Mono", monospace;
 
+  --fs-hero: clamp(3.2rem, 12vw, 9rem);
+  --fs-title: clamp(2.75rem, 6vw, 4.5rem);
+  --fs-h2: clamp(2rem, 4vw, 2.9rem);
+  --fs-h3: clamp(1.4rem, 2.6vw, 1.85rem);
   --fs-body: 1.0625rem;
   --fs-lead: 1.28rem;
+  --fs-label: 0.78rem;
   --fs-kicker: 0.78rem;
-  --fs-meta: 0.85rem;
+  --fs-meta: 0.78rem;
 
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --dur: 220ms;
@@ -118,7 +123,7 @@ a:hover { color: var(--accent); }
   font-weight: 500;
   line-height: 1.02;
   letter-spacing: -0.015em;
-  font-size: clamp(2.3rem, 5.5vw, 4rem);
+  font-size: var(--fs-h2);
   text-wrap: balance;
 }
 
@@ -127,8 +132,12 @@ a:hover { color: var(--accent); }
   font-weight: 500;
   line-height: 1.12;
   letter-spacing: -0.01em;
-  font-size: clamp(1.5rem, 3vw, 2.05rem);
+  font-size: var(--fs-h3);
 }
+
+.info-head .h2,
+.quiz-head .h2,
+.reg-head .h2 { font-size: var(--fs-title); }
 
 .lede {
   font-size: var(--fs-lead);
@@ -240,7 +249,7 @@ body.is-portal-lock { overflow: hidden; }
   position: relative;
   z-index: 2;
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 6vw, 4rem);
+  font-size: var(--fs-title);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--paper);
@@ -267,7 +276,7 @@ body.is-portal-lock { overflow: hidden; }
   border-radius: var(--r);
   border: 1px solid transparent;
   font-family: var(--font-body);
-  font-size: 0.97rem;
+  font-size: var(--fs-body);
   font-weight: 600;
   line-height: 1;
   text-decoration: none;
@@ -421,14 +430,14 @@ body.is-portal-lock { overflow: hidden; }
   color: var(--paper);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: var(--fs-h3);
   font-weight: 500;
   border-bottom: 1px solid var(--dark-hairline);
 }
 .mobile-nav a:last-child { border-bottom: 0; }
 .mobile-nav a .m-num {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.12em;
   color: var(--accent-bright);
   font-weight: 600;
@@ -469,7 +478,7 @@ body.is-portal-lock { overflow: hidden; }
   gap: 0.55rem;
   padding: 0.5rem 0.8rem;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -532,7 +541,7 @@ body.is-portal-lock { overflow: hidden; }
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.02em;
-  font-size: clamp(3.2rem, 12vw, 9rem);
+  font-size: var(--fs-hero);
   margin: 0;
 }
 .hero-title .line { display: block; }
@@ -565,13 +574,13 @@ body.is-portal-lock { overflow: hidden; }
 .hero-fact svg { width: 1.15rem; height: 1.15rem; color: var(--accent-bright); flex: none; margin-top: 0.15rem; }
 .hero-fact .hf-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--paper-muted);
   font-weight: 600;
 }
-.hero-fact .hf-value { font-size: 1rem; font-weight: 600; color: var(--paper); margin-top: 0.2rem; }
+.hero-fact .hf-value { font-size: var(--fs-body); font-weight: 600; color: var(--paper); margin-top: 0.2rem; }
 
 .hero-actions {
   margin-top: clamp(2.25rem, 4vw, 3.25rem);
@@ -583,7 +592,7 @@ body.is-portal-lock { overflow: hidden; }
 .hero-countdown { margin-top: clamp(2.5rem, 5vw, 3.75rem); max-width: 34rem; }
 .hero-countdown .hc-kicker {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -605,7 +614,7 @@ body.is-portal-lock { overflow: hidden; }
 .hc-num {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-size: var(--fs-h3);
   font-weight: 600;
   line-height: 1;
   color: var(--paper);
@@ -615,7 +624,7 @@ body.is-portal-lock { overflow: hidden; }
   display: block;
   margin-top: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -623,7 +632,7 @@ body.is-portal-lock { overflow: hidden; }
 .hero-countdown .hc-sub {
   margin-top: 0.9rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   color: var(--paper-muted);
 }
@@ -666,7 +675,7 @@ body.is-portal-lock { overflow: hidden; }
 .contents-list a:hover { color: var(--paper); padding-left: 0.35rem; }
 .contents-list .c-num {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   color: var(--paper-muted);
   font-weight: 600;
@@ -674,7 +683,7 @@ body.is-portal-lock { overflow: hidden; }
   flex: none;
   transition: color var(--dur) var(--ease);
 }
-.contents-list .c-title { font-family: var(--font-display); font-weight: 500; font-size: 1.1rem; flex: 1; }
+.contents-list .c-title { font-family: var(--font-display); font-weight: 500; font-size: var(--fs-body); flex: 1; }
 .contents-list .c-arrow {
   width: 1.05rem;
   height: 1.05rem;
@@ -717,14 +726,14 @@ body.is-portal-lock { overflow: hidden; }
 .about-stat .stat-num {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(3.2rem, 6.5vw, 4.6rem);
+  font-size: var(--fs-title);
   line-height: 0.9;
   color: var(--accent);
   letter-spacing: -0.02em;
 }
 .about-stat .stat-text {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   line-height: 1.5;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -743,7 +752,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .disciplines li {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -805,7 +814,7 @@ body.is-portal-lock { overflow: hidden; }
 .world-panel:hover { border-color: var(--paper); background: var(--dark-panel); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45); }
 .world-panel .wp-cat {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -814,7 +823,7 @@ body.is-portal-lock { overflow: hidden; }
 .world-panel .wp-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2.2rem, 4.5vw, 3.3rem);
+  font-size: var(--fs-h2);
   line-height: 0.98;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -833,7 +842,7 @@ body.is-portal-lock { overflow: hidden; }
   padding: 0.55rem 0;
   border-bottom: 1px solid var(--dark-hairline);
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -861,7 +870,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .map-filter {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
@@ -892,12 +901,12 @@ body.is-portal-lock { overflow: hidden; }
 .lane-head .lh-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: var(--fs-h3);
   color: var(--ink);
 }
 .lane-head .lh-count {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -947,7 +956,7 @@ body.is-portal-lock { overflow: hidden; }
 .map-node:hover::before { border-color: var(--ink); }
 .map-node .mn-num {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   color: var(--muted);
   font-weight: 600;
@@ -957,7 +966,7 @@ body.is-portal-lock { overflow: hidden; }
 .map-node .mn-name {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: var(--fs-h3);
   color: var(--ink);
   flex: 1;
 }
@@ -985,7 +994,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .map-info .mi-empty {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -994,7 +1003,7 @@ body.is-portal-lock { overflow: hidden; }
 .map-info[hidden] { display: none; }
 .mi-kicker {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1004,7 +1013,7 @@ body.is-portal-lock { overflow: hidden; }
 .mi-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-size: var(--fs-h2);
   line-height: 1;
   color: var(--ink);
   margin-bottom: 0.9rem;
@@ -1012,7 +1021,7 @@ body.is-portal-lock { overflow: hidden; }
 .mi-body { color: var(--ink-soft); max-width: 58ch; }
 .mi-team {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1041,7 +1050,7 @@ body.is-portal-lock { overflow: hidden; }
 .explore-card:hover { border-color: var(--ink); background: var(--bg); transform: translateY(-4px); box-shadow: 0 14px 34px rgba(11, 11, 11, 0.12); }
 .explore-card .ec-index {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1050,14 +1059,14 @@ body.is-portal-lock { overflow: hidden; }
 .explore-card .ec-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  font-size: var(--fs-h2);
   line-height: 1;
   color: var(--ink);
 }
 .explore-card .ec-desc { color: var(--ink-soft); max-width: 44ch; }
 .explore-card .ec-events {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1085,7 +1094,7 @@ body.is-portal-lock { overflow: hidden; }
 .world-hero .world-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-size: var(--fs-title);
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -1093,7 +1102,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .world-hero .world-lede {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-size: var(--fs-lead);
   line-height: 1.5;
   color: var(--paper);
   max-width: 44ch;
@@ -1104,7 +1113,7 @@ body.is-portal-lock { overflow: hidden; }
   flex-wrap: wrap;
   gap: 0.6rem 2rem;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -1126,7 +1135,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .world-index .wi-num {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1137,7 +1146,7 @@ body.is-portal-lock { overflow: hidden; }
 .world-index .wi-name {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.15rem;
+  font-size: var(--fs-body);
   line-height: 1.2;
   color: var(--ink);
 }
@@ -1156,14 +1165,14 @@ body.is-portal-lock { overflow: hidden; }
 .ed-side .ed-num {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-size: var(--fs-h2);
   line-height: 1;
   color: var(--accent);
   letter-spacing: -0.02em;
 }
 .ed-side .ed-cat {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1174,7 +1183,7 @@ body.is-portal-lock { overflow: hidden; }
 .ed-main .ed-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.9rem, 3.8vw, 2.7rem);
+  font-size: var(--fs-h3);
   line-height: 1.02;
   letter-spacing: -0.015em;
   color: var(--ink);
@@ -1187,7 +1196,7 @@ body.is-portal-lock { overflow: hidden; }
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1211,7 +1220,7 @@ body.is-portal-lock { overflow: hidden; }
 .world-out .wo-text p:first-child {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: var(--fs-h3);
   line-height: 1.2;
   color: var(--ink);
   margin-bottom: 0.4rem;
@@ -1240,12 +1249,12 @@ body.is-portal-lock { overflow: hidden; }
 .day-head .d-num {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+  font-size: var(--fs-h3);
   color: var(--accent);
 }
 .day-head .d-title {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1256,18 +1265,18 @@ body.is-portal-lock { overflow: hidden; }
 .day-rows li:last-child { border-bottom: 0; }
 .t-time {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.06em;
   color: var(--accent);
   font-weight: 600;
   margin-bottom: 0.45rem;
   text-transform: uppercase;
 }
-.t-events { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.55; }
+.t-events { color: var(--ink-soft); font-size: var(--fs-body); line-height: 1.55; }
 .t-events.is-lunch {
   color: var(--muted);
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
@@ -1275,7 +1284,7 @@ body.is-portal-lock { overflow: hidden; }
 .timeline-note {
   margin-top: clamp(2.5rem, 5vw, 3.5rem);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1292,7 +1301,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 .rule-list .r-num {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   color: var(--accent);
   letter-spacing: 0.06em;
@@ -1303,7 +1312,7 @@ body.is-portal-lock { overflow: hidden; }
   margin-top: 2.5rem;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.3rem;
+  font-size: var(--fs-h3);
   color: var(--ink);
   max-width: 46ch;
   line-height: 1.5;
@@ -1324,7 +1333,7 @@ body.is-portal-lock { overflow: hidden; }
   text-align: left;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-size: var(--fs-h3);
   line-height: 1.3;
   color: var(--ink);
 }
@@ -1340,7 +1349,7 @@ body.is-portal-lock { overflow: hidden; }
 .faq-a { padding: 0 0.25rem 1.5rem; max-width: 68ch; color: var(--ink-soft); }
 .faq-a .q-num {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   color: var(--accent);
   font-weight: 600;
@@ -1371,7 +1380,7 @@ body.is-portal-lock { overflow: hidden; }
 
 .quiz-intro .q-count {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   color: var(--accent-bright);
   font-weight: 600;
@@ -1385,7 +1394,7 @@ body.is-portal-lock { overflow: hidden; }
   align-items: center;
   gap: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   color: var(--paper-muted);
   font-weight: 600;
@@ -1403,7 +1412,7 @@ body.is-portal-lock { overflow: hidden; }
 .q-count-n { color: var(--accent-bright); }
 .q-dimension {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -1413,7 +1422,7 @@ body.is-portal-lock { overflow: hidden; }
 .q-text {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  font-size: var(--fs-h2);
   line-height: 1.12;
   color: var(--paper);
   max-width: 26ch;
@@ -1456,7 +1465,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   gap: 0.75rem;
   margin-top: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -1466,7 +1475,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   margin-top: 0.9rem;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: var(--fs-body);
   color: var(--paper);
   min-height: 1.6em;
 }
@@ -1481,7 +1490,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 
 .quiz-reveal .r-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.22em;
   color: var(--accent-bright);
   font-weight: 600;
@@ -1490,7 +1499,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .quiz-reveal .r-name {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(3rem, 9vw, 6.5rem);
+  font-size: var(--fs-title);
   line-height: 0.95;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -1498,7 +1507,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .quiz-reveal .r-why {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: var(--fs-lead);
   line-height: 1.5;
   color: var(--paper);
   max-width: 40ch;
@@ -1515,7 +1524,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .r-meta span {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -1529,7 +1538,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   border: 0;
   color: var(--paper-muted);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   cursor: pointer;
   text-decoration: underline;
@@ -1558,7 +1567,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1572,7 +1581,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   color: var(--muted);
   transition: all var(--dur) var(--ease);
 }
@@ -1597,7 +1606,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .field label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1630,7 +1639,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .field.is-invalid textarea { border-color: var(--accent); }
 .field-error {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   color: var(--accent);
   margin-top: 0.4rem;
 }
@@ -1646,7 +1655,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .ev-group:last-child { margin-bottom: 0; }
 .ev-group-label {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1698,17 +1707,17 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .ev-card.is-on .ev-tick { background: var(--accent); border-color: var(--accent); }
 .ev-check:focus-visible + .ev-card-body .ev-tick { outline: 2px solid var(--ink); outline-offset: 2px; }
 .ev-main { display: flex; flex-direction: column; gap: 0.15rem; }
-.ev-name { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
+.ev-name { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-body); }
 .ev-team {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .ev-blurb {
   grid-column: 2;
-  font-size: 0.88rem;
+  font-size: var(--fs-body);
   line-height: 1.45;
   color: var(--ink-soft);
   margin-top: 0.2rem;
@@ -1717,7 +1726,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   align-self: flex-start;
   margin: 0.2rem 0 0.9rem 2.6rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1726,7 +1735,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .ev-more:hover { text-decoration: underline; }
 .ev-count {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.03em;
   color: var(--ink-soft);
   margin-top: 1.1rem;
@@ -1753,7 +1762,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .member-row .m-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1761,7 +1770,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .rtb-event-hint {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.03em;
   color: var(--ink-soft);
   background: var(--surface);
@@ -1782,10 +1791,10 @@ input[type="range"].quiz-range::-moz-range-thumb {
   background: var(--paper);
   margin-bottom: 0.75rem;
 }
-.rtb-event-name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+.rtb-event-name { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-body); }
 .rtb-event-path {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1793,7 +1802,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .rtb-event-link {
   margin-left: auto;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1802,7 +1811,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .rtb-event-link:hover { text-decoration: underline; }
 .rtb-num {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1824,7 +1833,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .su-team > p {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: var(--fs-h3);
   margin-bottom: 0.6rem;
 }
 .su-team ul { list-style: none; margin: 0; padding: 0; }
@@ -1847,7 +1856,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .reg-review .rr-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1865,12 +1874,12 @@ input[type="range"].quiz-range::-moz-range-thumb {
   max-width: 62ch;
 }
 .reg-agree input { margin-top: 0.35rem; accent-color: var(--accent); width: 16px; height: 16px; }
-.reg-agree .ra-text { color: var(--ink-soft); font-size: 0.95rem; }
+.reg-agree .ra-text { color: var(--ink-soft); font-size: var(--fs-body); }
 
 .reg-success { padding: clamp(1.5rem, 4vw, 2.5rem) 0 1rem; }
 .reg-success .su-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.24em;
   color: var(--accent);
   font-weight: 600;
@@ -1880,7 +1889,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .reg-success .su-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-size: var(--fs-title);
   line-height: 0.95;
   color: var(--ink);
   margin-bottom: 1.25rem;
@@ -1900,12 +1909,12 @@ input[type="range"].quiz-range::-moz-range-thumb {
   gap: 1rem;
   padding: 0.6rem 0;
   border-bottom: 1px solid var(--hairline);
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
 }
 .su-block li:last-child { border-bottom: 0; }
 .su-block li span:first-child {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1915,7 +1924,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .su-block li span:last-child { color: var(--ink); font-weight: 600; }
 .demo-note {
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   line-height: 1.6;
   color: var(--muted);
   max-width: 58ch;
@@ -1933,7 +1942,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .conclusion-text {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+  font-size: var(--fs-h2);
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: var(--paper);
@@ -1946,7 +1955,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   font-weight: 600;
   font-style: italic;
   color: var(--accent);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: var(--fs-h3);
 }
 .contact-block {
   border: 1px solid var(--dark-hairline);
@@ -1971,7 +1980,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   flex: none;
 }
 .contact-list a {
-  font-size: 1.08rem;
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--paper);
   text-decoration: none;
@@ -1980,7 +1989,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .contact-list a:hover { color: var(--accent-bright); text-decoration: underline; text-underline-offset: 4px; }
 .contact-list .c-type {
   font-family: var(--font-mono);
-  font-size: 0.66rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -2005,14 +2014,14 @@ input[type="range"].quiz-range::-moz-range-thumb {
 .footer-wordmark {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: var(--fs-h3);
   color: var(--paper);
   text-decoration: none;
 }
 .footer-wordmark .wordmark-year { color: var(--accent); }
 .footer-meta {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.06em;
   color: var(--paper-muted);
   font-weight: 600;
@@ -2026,7 +2035,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
 }
 .footer-links a {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--paper-muted);
@@ -2044,7 +2053,7 @@ input[type="range"].quiz-range::-moz-range-thumb {
   margin-top: 0.5rem;
   border-top: 1px solid var(--dark-hairline);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: var(--fs-label);
   letter-spacing: 0.08em;
   color: var(--paper-muted);
   text-transform: uppercase;
