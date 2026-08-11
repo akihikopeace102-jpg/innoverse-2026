@@ -116,4 +116,29 @@
     renderCrumb();
     window.addEventListener("hashchange", renderCrumb);
   }
+
+  var countdown = document.getElementById("countdown");
+  if (countdown) {
+    var TARGET = new Date("2026-09-28T09:30:00+05:30").getTime();
+    var cdEl = {
+      d: document.getElementById("cd-days"),
+      h: document.getElementById("cd-hours"),
+      m: document.getElementById("cd-min"),
+      s: document.getElementById("cd-sec")
+    };
+    function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+    function tick() {
+      var diff = TARGET - Date.now();
+      if (diff <= 0) {
+        cdEl.d.textContent = cdEl.h.textContent = cdEl.m.textContent = cdEl.s.textContent = "00";
+        return;
+      }
+      cdEl.d.textContent = pad2(Math.floor(diff / 864e5));
+      cdEl.h.textContent = pad2(Math.floor(diff % 864e5 / 36e5));
+      cdEl.m.textContent = pad2(Math.floor(diff % 36e5 / 6e4));
+      cdEl.s.textContent = pad2(Math.floor(diff % 6e4 / 1e3));
+    }
+    tick();
+    window.setInterval(tick, 1000);
+  }
 })();

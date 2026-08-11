@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration — INNOVERSE 2026</title>
+  <title>Registration · INNOVERSE 2026</title>
   <meta name="description" content="Register for INNOVERSE 2026, 28–30 September 2026 at Choithram School, Manik Bagh, Indore. Five steps: events, information, teams, review, complete. Free of cost.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0B0B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' font-weight='600' fill='%23C1121F' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/fonts.css">
@@ -16,7 +16,7 @@
 
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-      <a class="wordmark" href="index.html" aria-label="INNOVERSE 2026 — home">
+      <a class="wordmark" href="index.html" aria-label="INNOVERSE 2026 · home">
         INNOVERSE<span class="wordmark-year">2026</span>
       </a>
 
@@ -48,7 +48,7 @@
     <section class="reg-head" aria-labelledby="regTitle">
       <p class="kicker">Registration · Innoverse 2026</p>
       <h1 class="h2" id="regTitle">Ready? Register.</h1>
-      <p class="lede">Pick the events your school will enter, then add a team for each one. The form takes a few minutes — review everything before you submit. Participation is completely free of cost.</p>
+      <p class="lede">Pick the events your school will enter, then add a team for each one. The form takes a few minutes. Review everything before you submit. Participation is completely free of cost.</p>
     </section>
 
     <div class="reg-shell" id="regShell">
@@ -65,7 +65,7 @@
 
         <fieldset class="reg-screen is-active" data-step="1">
           <h2 class="h3">Which events?</h2>
-          <p class="rs-sub">Tick every event your school will enter — each event you pick becomes one team, and a team can only take one event. Not sure what an event involves? Its details link opens in a new tab, so you can check it out without losing your place.</p>
+          <p class="rs-sub">Tick every event your school will enter. Each event you pick becomes one team, and a team can only take one event. Not sure what an event involves? Its details link opens in a new tab, so you can check it out without losing your place.</p>
           <div id="eventPicker"></div>
           <p class="ev-count" id="evCount" hidden></p>
           <p class="field-error" id="evError" hidden>Choose at least one event to continue.</p>
@@ -79,7 +79,7 @@
         <fieldset class="reg-screen" data-step="2">
           <h2 class="h3">Information</h2>
           <p class="rs-sub">Details of your school and the mentor registering the teams. Required fields are marked with <span style="color:var(--accent);">*</span>.</p>
-          <p class="rs-sub rs-mention">You picked <b id="pickMention">1 event</b> — the next step has a form for each team.</p>
+          <p class="rs-sub rs-mention">You picked <b id="pickMention">1 event</b>. The next step has a form for your team.</p>
           <div class="field-grid">
             <div class="field">
               <label for="f-school">School name <span class="req">*</span></label>
@@ -97,14 +97,6 @@
               <label for="f-escort-phone">Escort teacher phone</label>
               <input id="f-escort-phone" name="escortPhone" type="tel" autocomplete="tel">
             </div>
-            <div class="field">
-              <label for="f-email">Mentor email</label>
-              <input id="f-email" name="email" type="email" autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="f-phone">Mentor phone</label>
-              <input id="f-phone" name="phone" type="tel" autocomplete="tel">
-            </div>
           </div>
           <div class="reg-nav">
             <button class="btn btn-ghost" type="button" data-go="1">Back</button>
@@ -116,7 +108,7 @@
 
         <fieldset class="reg-screen" data-step="3">
           <h2 class="h3">Teams</h2>
-          <p class="rs-sub">One form per event you selected. Each team's event is locked in — fill in its details, and a team's size must match its event's requirement.</p>
+          <p class="rs-sub">One form per event you selected. Each team's event is locked in. Fill in its details, and a team's size must match its event's requirement.</p>
 
           <div class="reg-team-blocks" id="teamsContainer"></div>
 
@@ -130,7 +122,7 @@
 
         <fieldset class="reg-screen" data-step="4">
           <h2 class="h3">Review</h2>
-          <p class="rs-sub">Check everything before you submit — use Back to change any detail.</p>
+          <p class="rs-sub">Check everything before you submit. Use Back to change any detail.</p>
           <div id="reviewList"></div>
           <div class="reg-nav">
             <button class="btn btn-ghost" type="button" data-go="3">Back</button>

@@ -93,7 +93,7 @@
     var pct = ((v + 2) / 4) * 100;
     el.slider.style.background = "linear-gradient(to right, #C1121F 0%, #C1121F " + pct + "%, rgba(242,239,232,0.34) " + pct + "%, rgba(242,239,232,0.34) 100%)";
     if (v === 0) {
-      el.active.textContent = "Evenly balanced — you could go either way.";
+      el.active.textContent = "Evenly balanced. You could go either way.";
     } else if (v < 0) {
       el.active.textContent = "You lean toward " + (v === -2 ? "entirely " : "") + q.lo + ".";
     } else {
@@ -120,7 +120,7 @@
 
     var copy;
     if (!strong.length) {
-      copy = "You sit right at the centre of every choice — which means any event could be yours.";
+      copy = "You sit right at the centre of every choice, which means any event could be yours.";
     } else {
       var picks = strong.slice(0, 2).map(function (t) {
         return answers[t.j] < 0 ? phrases.lo[t.j] : phrases.hi[t.j];
@@ -134,8 +134,8 @@
     var meta = document.getElementById("rMeta");
     meta.innerHTML =
       "<span><b>" + ev.path + "</b></span>" +
-      "<span>Teams — <b>" + ev.team.replace("Teams of ", "") + "</b></span>" +
-      "<span>Free — <b>Yes</b></span>";
+      "<span>Teams · <b>" + ev.team.replace("Teams of ", "") + "</b></span>" +
+      "<span>Free · <b>Yes</b></span>";
     document.getElementById("rDesc").textContent = ev.blurb;
     document.getElementById("rExplore").href = ev.page + "#" + best;
     document.getElementById("rRegister").href = "register.html?event=" + best;
