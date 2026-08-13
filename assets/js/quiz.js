@@ -138,7 +138,7 @@
       "<span>Free · <b>Yes</b></span>";
     document.getElementById("rDesc").textContent = ev.blurb;
     document.getElementById("rExplore").href = ev.page + "#" + best;
-    document.getElementById("rRegister").href = "register.html?event=" + best;
+    document.getElementById("rRegister").href = "https://forms.gle/2wMmQGNTSf1ycA4x6";
     show("reveal");
   }
 

@@ -60,7 +60,7 @@
     body.textContent = ev.blurb;
     team.textContent = ev.path + " · " + ev.team;
     explore.href = ev.page + "#" + slug;
-    register.href = "register.html?event=" + slug;
+    register.href = "https://forms.gle/2wMmQGNTSf1ycA4x6";
     info.hidden = false;
   }
 
