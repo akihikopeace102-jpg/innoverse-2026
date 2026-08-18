@@ -140,15 +140,15 @@ a:hover { color: var(--accent); }
 .reg-head .h2 { font-size: var(--fs-title); }
 
 .lede {
-  font-size: var(--fs-lead);
-  line-height: 1.55;
+  font-size: var(--fs-body);
+  line-height: 1.6;
   color: var(--ink-soft);
 }
 
 .outcome {
   font-family: var(--font-display);
-  font-size: 1.26em;
-  line-height: 1.5;
+  font-size: var(--fs-body);
+  line-height: 1.6;
   font-weight: 400;
   color: var(--ink);
 }
