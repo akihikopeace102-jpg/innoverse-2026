@@ -11,7 +11,7 @@
     { dim: "Build ↔ Strategize", text: "Are you happier making something, or planning something?", lo: "Build", hi: "Strategize" },
     { dim: "Pressure ↔ Preparation", text: "Do you think fastest when it's on the line, or when you've prepared?", lo: "Pressure", hi: "Preparation" },
     { dim: "Solo ↔ Team", text: "Do you do your best work alone, or with a team beside you?", lo: "Solo", hi: "Team" },
-    { dim: "Pitch ↔ Execute", text: "Would you rather persuade the room, or finish the job?", lo: "Pitch", hi: "Execute" }
+    { dim: "Pitch ↔ Execute", text: "What would you choose, pitching to a room, or quietly executing a great idea?", lo: "Pitching to a room", hi: "Bringing an idea to life" }
   ];
 
   var SCORES = {
@@ -42,7 +42,7 @@
 
   var phrases = {
     lo: ["business thinking", "building things", "composure under pressure", "solo thinking", "persuasion"],
-    hi: ["technology", "strategic thinking", "careful preparation", "team action", "hands-on execution"]
+    hi: ["technology", "strategic thinking", "careful preparation", "team action", "bringing ideas to life"]
   };
 
   var el = {
@@ -91,7 +91,7 @@
     var q = QS[current];
     var v = +el.slider.value;
     var pct = ((v + 2) / 4) * 100;
-    el.slider.style.background = "linear-gradient(to right, #C1121F 0%, #C1121F " + pct + "%, rgba(242,239,232,0.34) " + pct + "%, rgba(242,239,232,0.34) 100%)";
+    el.slider.style.background = "linear-gradient(to right, #8B6E5A 0%, #8B6E5A " + pct + "%, rgba(245,244,240,0.3) " + pct + "%, rgba(245,244,240,0.3) 100%)";
     if (v === 0) {
       el.active.textContent = "Evenly balanced. You could go either way.";
     } else if (v < 0) {

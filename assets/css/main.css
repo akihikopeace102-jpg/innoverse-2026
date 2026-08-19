@@ -1,24 +1,24 @@
 :root {
-  --bg: #F2EFE8;
-  --surface: #F7F4EE;
-  --ink: #17130D;
-  --ink-soft: #403A30;
-  --muted: #6E675A;
-  --hairline: #DDD7C9;
-  --hairline-strong: #BFB8A6;
+  --bg: #F5F4F0;
+  --surface: #EEECEA;
+  --ink: #1A1A1A;
+  --ink-soft: #4A4845;
+  --muted: #8A8780;
+  --hairline: #DCD9D3;
+  --hairline-strong: #C4C0B9;
 
-  --dark: #0B0B0B;
-  --dark-panel: #131210;
-  --paper: #F2EFE8;
-  --paper-muted: #B4AE9F;
-  --dark-hairline: rgba(242, 239, 232, 0.16);
-  --dark-hairline-strong: rgba(242, 239, 232, 0.34);
+  --dark: #0C0C0C;
+  --dark-panel: #141413;
+  --paper: #F5F4F0;
+  --paper-muted: #A8A5A0;
+  --dark-hairline: rgba(245, 244, 240, 0.14);
+  --dark-hairline-strong: rgba(245, 244, 240, 0.3);
 
-  --accent: #C1121F;
-  --accent-deep: #9E0F19;
-  --accent-bright: #E63340;
-  --accent-wash: #F3D8D8;
-  --on-accent: #F7F4EE;
+  --accent: #8B6E5A;
+  --accent-deep: #6E5748;
+  --accent-bright: #A4856F;
+  --accent-wash: #F0EAE4;
+  --on-accent: #F5F4F0;
 
   --r: 8px;
 
@@ -304,7 +304,7 @@ body.is-portal-lock { overflow: hidden; }
 .spinner {
   width: 1em;
   height: 1em;
-  border: 2px solid rgba(242, 239, 232, 0.35);
+  border: 2px solid rgba(245, 244, 240, 0.35);
   border-top-color: currentColor;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
@@ -340,7 +340,7 @@ body.is-portal-lock { overflow: hidden; }
 }
 
 .site-header.is-scrolled {
-  background: rgba(242, 239, 232, 0.94);
+  background: rgba(245, 244, 240, 0.94);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   color: var(--ink);
@@ -483,7 +483,7 @@ body.is-portal-lock { overflow: hidden; }
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 600;
-  background: rgba(242, 239, 232, 0.94);
+  background: rgba(245, 244, 240, 0.94);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid var(--hairline);
@@ -498,7 +498,7 @@ body.is-portal-lock { overflow: hidden; }
 .you-are-here a:hover { color: var(--accent); }
 .you-are-here .yah-here { color: var(--ink); }
 .dark .you-are-here {
-  background: rgba(11, 11, 11, 0.85);
+  background: rgba(12, 12, 12, 0.85);
   border-color: var(--dark-hairline);
   color: var(--paper-muted);
 }
@@ -607,7 +607,7 @@ body.is-portal-lock { overflow: hidden; }
 .hc-cell {
   border: 1px solid var(--dark-hairline-strong);
   border-radius: var(--r);
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(245, 244, 240, 0.03);
   padding: 0.95rem 0.5rem 0.85rem;
   text-align: center;
 }
