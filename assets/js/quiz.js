@@ -91,7 +91,7 @@
     var q = QS[current];
     var v = +el.slider.value;
     var pct = ((v + 2) / 4) * 100;
-    el.slider.style.background = "linear-gradient(to right, #8B6E5A 0%, #8B6E5A " + pct + "%, rgba(245,244,240,0.3) " + pct + "%, rgba(245,244,240,0.3) 100%)";
+    el.slider.style.background = "linear-gradient(to right, #C1121F 0%, #C1121F " + pct + "%, rgba(245,244,240,0.3) " + pct + "%, rgba(245,244,240,0.3) 100%)";
     if (v === 0) {
       el.active.textContent = "Evenly balanced. You could go either way.";
     } else if (v < 0) {

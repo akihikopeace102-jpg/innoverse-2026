@@ -2,27 +2,27 @@
   --bg: #F5F4F0;
   --surface: #EEECEA;
   --ink: #1A1A1A;
-  --ink-soft: #4A4845;
-  --muted: #8A8780;
+  --ink-soft: #3A3834;
+  --muted: #5B5852;
   --hairline: #DCD9D3;
   --hairline-strong: #C4C0B9;
 
   --dark: #0C0C0C;
   --dark-panel: #141413;
   --paper: #F5F4F0;
-  --paper-muted: #A8A5A0;
+  --paper-muted: #C4C1BB;
   --dark-hairline: rgba(245, 244, 240, 0.14);
   --dark-hairline-strong: rgba(245, 244, 240, 0.3);
 
-  --accent: #8B6E5A;
-  --accent-deep: #6E5748;
-  --accent-bright: #A4856F;
-  --accent-wash: #F0EAE4;
-  --on-accent: #F5F4F0;
+  --accent: #C1121F;
+  --accent-deep: #9A0E1A;
+  --accent-bright: #E03A45;
+  --accent-wash: #FBE9EB;
+  --on-accent: #FFFFFF;
 
   --r: 8px;
 
-  --font-display: "Newsreader", "Georgia", serif;
+  --font-display: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Mono", monospace;
 
