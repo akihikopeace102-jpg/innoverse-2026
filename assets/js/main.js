@@ -7,11 +7,11 @@
     "fort-knox-escape": { name: "Fort Knox Escape", path: "E-Summit", page: "esummit.html", team: "Teams of 4", min: 4, max: 4, blurb: "Solve a business mystery, then escape the room before time runs out." },
     "make-and-sell": { name: "Make & Sell", path: "E-Summit", page: "esummit.html", team: "Teams of 4–5", min: 4, max: 5, blurb: "Build a prototype, brand it, pitch it, then sell it at a live marketplace." },
     "trade-tremors": { name: "Trade Tremors", path: "E-Summit", page: "esummit.html", team: "Teams of up to 5", min: 1, max: 5, blurb: "Run a trading firm through real-time market shifts, crises, and recoveries." },
-    "code-decode": { name: "Code Decode", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Become an elite heist crew — code, engineer, and crack the vault before time runs out." },
-    "frontier-1": { name: "Frontier-1", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Blindfolded driver, one navigator — steer your robot through the final heist." },
-    "crossfire": { name: "The Crossfire", path: "Techfest", page: "techfest.html", team: "Teams of 5", min: 5, max: 5, blurb: "5v5 VALORANT esports — group stages, knockouts, and a best-of-3 grand final." },
-    "survivor": { name: "Survivor", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Stakeholder teams manage a live crisis — negotiate, adapt, and investigate." },
-    "science-vault": { name: "Science Vault", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Design, build, and present a working physical prototype — earn visitor tokens too." }
+    "code-decode": { name: "Code Decode", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Become an elite heist crew: code, engineer, and crack the vault before time runs out." },
+    "frontier-1": { name: "Frontier-1", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Blindfolded driver, one navigator; steer your robot through the final heist." },
+    "crossfire": { name: "The Crossfire", path: "Techfest", page: "techfest.html", team: "Teams of 5", min: 5, max: 5, blurb: "5v5 VALORANT esports: group stages, knockouts, and a best-of-3 grand final." },
+    "survivor": { name: "Survivor", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Stakeholder teams manage a live crisis; negotiate, adapt, and investigate." },
+    "science-vault": { name: "Science Vault", path: "Techfest", page: "techfest.html", team: "Teams of 3–5", min: 3, max: 5, blurb: "Design, build, and present a working physical prototype and earn visitor tokens too." }
   };
 
   document.documentElement.classList.add("js");
